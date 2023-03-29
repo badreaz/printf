@@ -10,9 +10,9 @@
  */
 int _printf(const char *format, ...)
 {
-	int c = 0, i, j, x;
+	int c = 0, i, j;
 	va_list list;
-	char *ans, *string[1024];
+	char *ans, string[1024];
 
 	va_start(list, format);
 	i = 0;
@@ -21,7 +21,8 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (find_type(format[i]) == NULL)
+			i++;
+			if (find_type(format[i++]) == NULL)
 				ans = ctos(format[i]);
 			else
 				ans = find_type(format[i])(list);
@@ -33,14 +34,13 @@ int _printf(const char *format, ...)
 			c = alloc_mem(string, ans, j, c);
 		}
 		i++;
-		j++;
+		j = c;
 	}
 	va_end(list);
 	/* print string */
 	for (i = 0; i < j; i++)
 	{
-		for (x = 0; string[i]; i++)
-			write(1, &string[i][x], 1);
+		write(1, &string[i], 1);
 	}
 	return (c);
 }
