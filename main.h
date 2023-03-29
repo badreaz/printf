@@ -31,10 +31,10 @@ char *S_type(va_list S);
 char *p_type(va_list p);
 char *r_type(va_list r);
 char *R_type(va_list R);
-void _memcpy(char *, char *, unsigned int);
+void _memcpy(char *, char *, unsigned int, unsigned int);
 char *itohex(int n);
 int _strlen(char *s);
 char *ctos(char c);
-int alloc_mem(char *buffer[], char *ans, int index, int count);
+int alloc_mem(char *buffer, char *ans, int index, int count);
 
 #endif
