@@ -4,15 +4,23 @@
  * c_type - convert char to char *.
  * @c: char to convert.
  *
- * Return pointer to string.
+ * Return: pointer to string.
  */
 char *c_type(va_list c)
 {
 	char *s;
 	
 	s = malloc(2 * sizeof(char));
-	s[0] = va_arg(c, int);
-	s[1] = '\0';
+	if (s)
+	{
+		s[0] = va_arg(c, int);
+		s[1] = '\0';
+	}
+	else
+	{
+		free(s);
+		return (NULL);
+	}
 	return (s);
 }
 
@@ -76,6 +84,11 @@ char *i_type(va_list i)
 		c++;
 	}
 	s = malloc((c + 2) * sizeof(char));
+	if (s == NULL)
+	{
+		free(s);
+		return (NULL);
+	}
 	c = 0;
 	if (num < 0)
 	{
@@ -113,6 +126,11 @@ char *b_type(va_list b)
 		i++;
 	}
 	s = malloc((i + 1) * sizeof(char));
+	if (s == NULL)
+	{
+		free(s);
+		return (NULL);
+	}
 	i = 0;
 	while (div > 0)
 	{
@@ -144,6 +162,11 @@ char *u_type(va_list u)
 		i++;
 	}
 	s = malloc((i + 1) * sizeof(char));
+	if (s == NULL)
+	{
+		free(s);
+		return (NULL);
+	}
 	i = 0;
 	while (div != 0)
 	{
@@ -175,6 +198,11 @@ char *o_type(va_list o)
 		i++;
 	}
 	s = malloc((i + 1) * sizeof(char));
+	if (s == NULL)
+	{
+		free(s);
+		return (NULL);
+	}
 	i = 0;
 	while (div != 0)
 	{
@@ -207,6 +235,11 @@ char *x_type(va_list x)
 		i++;
 	}
 	s = malloc((i + 1) * sizeof(char));
+	if (s == NULL)
+	{
+		free(s);
+		return (NULL);
+	}
 	i = 0;
 	while (div != 0)
 	{
@@ -242,6 +275,11 @@ char *X_type(va_list X)
 		i++;
         }
 	s = malloc((i + 1) * sizeof(char));
+	if (s == NULL)
+	{
+		free(s);
+		return (NULL);
+	}
 	i = 0;
         while (div != 0)
         {
@@ -277,6 +315,11 @@ char *S_type(va_list S)
 			i += 3;
 	}
 	s = malloc((i + 1) * sizeof(char));
+	if (s == NULL)
+	{
+		free(s);
+		return (NULL);
+	}
 	for (i = 0, j = 0; str[i]; i++, j++)
 	{
 		if (str[i] < 32)
@@ -322,6 +365,11 @@ char *r_type(va_list r)
 
 	str = va_arg(r, char *);
 	s = malloc(sizeof(str));
+	if (s == NULL)
+	{
+		free(s);
+		return (NULL);
+	}
 	while (str[i] != '\0')
 	{
 		count++;
