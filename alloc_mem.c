@@ -9,12 +9,11 @@
  *
  * Return: the word count of whole buffer.
  */
-int alloc_mem(char *buffer[], char *ans, int index, int count)
+int alloc_mem(char *buffer, char *ans, int index, int count)
 {
 	int len = _strlen(ans);
 
-	buffer[index] = malloc(sizeof(ans));
-	_memcpy(buffer[index], ans, len + 1);
+	_memcpy(buffer, ans, len + 1, index);
 	count += len;
 	return (count);
 }
