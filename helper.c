@@ -36,16 +36,15 @@ char *itohex(int n)
  * @dest: pointer to copy to.
  * @src: pointer to copy from.
  * @n: number of byte.
+ * @index: buffer index to empty memory.
  */
-void _memcpy(char *dest, char *src, unsigned int n)
+void _memcpy(char *dest, char *src, unsigned int n, unsigned int index)
 {
 	unsigned int i = 0;
 
 	while (i < n)
 	{
-		*dest = *src;
-		dest++;
-		src++;
+		dest[i + index] = src[i];
 		i++;
 	}
 }
