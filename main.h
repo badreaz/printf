@@ -36,6 +36,7 @@ char *itohex(int n);
 int _strlen(char *s);
 char *_strdup(char *);
 char *ctos(char c);
+char *mtos(char c);
 int alloc_mem(char *buffer, char *ans, int index, int count);
 
 #endif

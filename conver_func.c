@@ -88,6 +88,7 @@ char *i_type(va_list i)
 	if (num < 0)
 	{
 		s[c] = '-';
+		num *= -1;
 		c++;
 	}
 	while (div != 0)

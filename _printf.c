@@ -22,8 +22,8 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			if (find_type(format[i++]) == NULL)
-				ans = ctos(format[i]);
+			if (find_type(format[i]) == NULL)
+				ans = mtos(format[i]);
 			else
 				ans = find_type(format[i])(list);
 			c = alloc_mem(string, ans, j, c);

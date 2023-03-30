@@ -8,11 +8,28 @@
  */
 char *p_type(va_list p)
 {
-	char *s;
+	char *s, *ptr;
+	int i, j;
 
-
-	s = va_arg(p, char *);
+	ptr = va_arg(p, char *);
 	/* add code */
+	s = malloc(_strlen(ptr) + 3);
+	if (s == NULL)
+	{
+		free(s);
+		return (NULL);
+	}
+	s[0] = '0';
+        s[1] = 'x';
+	i = 2;
+	j = 0;
+	while (ptr[j])
+	{
+		s[i] = ptr[j];
+		i++;
+		j++;
+	}
+	s[i] = '\0';
 	return (s);
 }
 

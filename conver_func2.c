@@ -105,7 +105,7 @@ char *x_type(va_list x)
 		if (j < 10)
 			s[i] = j + '0';
 		else
-			s[i] = j + 'a';
+			s[i] = j + 87;
 		div /= 16;
 		i++;
 	}
@@ -146,7 +146,7 @@ char *X_type(va_list X)
 		if (j < 10)
 			s[i] = j + '0';
 		else
-			s[i] = j + 'A';
+			s[i] = j + 55;
 		div /= 16;
 		i++;
 	}

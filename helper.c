@@ -85,6 +85,23 @@ char *ctos(char c)
 }
 
 /**
+ * mtos - convert character to char *.
+ * @c: character.
+ *
+ * Return: pointer to string.
+ */
+char *mtos(char c)
+{
+        char *s;
+
+        s = malloc(3);
+	s[0] = '%';
+        s[1] = c;
+        s[2] = '\0';
+        return (s);
+}
+
+/**
  * _strdup - copy a string to allocated memory.
  * @str: pointer to string.
  *
