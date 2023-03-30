@@ -34,6 +34,7 @@ char *R_type(va_list R);
 void _memcpy(char *, char *, unsigned int, unsigned int);
 char *itohex(int n);
 int _strlen(char *s);
+char *_strdup(char *);
 char *ctos(char c);
 int alloc_mem(char *buffer, char *ans, int index, int count);
 
