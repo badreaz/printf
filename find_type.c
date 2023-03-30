@@ -29,7 +29,7 @@ char *(*find_type(char c))(va_list)
 	for (i = 0; i < 14; i++)
 	{
 		if (c == types[i].specifier)
-			return(types[i].f);
+			return (types[i].f);
 	}
 	return (NULL);
 }
