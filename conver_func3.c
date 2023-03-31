@@ -33,10 +33,7 @@ char *r_type(va_list r)
 	str = va_arg(r, char *);
 	s = malloc(sizeof(char) * _strlen(str) + 1);
 	if (s == NULL)
-	{
-		free(s);
 		return (NULL);
-	}
 	while (str[i] != '\0')
 	{
 		count++;
@@ -68,6 +65,8 @@ char *R_type(va_list R)
 
 	str = va_arg(R, char *);
 	s = malloc(sizeof(char) * _strlen(str) + 1);
+	if (s == NULL)
+		return (NULL);
 	c = 0;
 	while (str[c] != '\0')
 	{
