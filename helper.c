@@ -18,12 +18,17 @@ char *itohex(int n)
 		div *= 16;
 		j /= 16;
 	}
-	while (div > 1)
+	if (n < 16)
+	{
+		s[i] = '0';
+		i++;
+	}
+	while (div != 0)
 	{
 		if (n / div < 10)
 			s[i] = ((n / div) % 16) + '0';
 		else
-			s[i] = ((n / div) % 16) + 'a';
+			s[i] = ((n / div) % 16) + 87;
 		div /= 16;
 		i++;
 	}
@@ -94,7 +99,9 @@ char *mtos(char c)
 {
         char *s;
 
-        s = malloc(3);
+        s = malloc(3 * sizeof(char));
+	if (s == NULL)
+		return (0);
 	s[0] = '%';
         s[1] = c;
         s[2] = '\0';

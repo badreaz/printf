@@ -17,3 +17,15 @@ int alloc_mem(char *buffer, char *ans, int index, int count)
 	count += len;
 	return (count);
 }
+
+/**
+ * init_buf - initialize the buffer.
+ * @buffer: pointer to array.
+ */
+void init_buf(char *buffer)
+{
+	int i;
+
+	for (i = 0; i < 1024; i++)
+		buffer[i] = 0;
+}

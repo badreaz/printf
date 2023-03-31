@@ -38,5 +38,6 @@ char *_strdup(char *);
 char *ctos(char c);
 char *mtos(char c);
 int alloc_mem(char *buffer, char *ans, int index, int count);
+void init_buf(char *buffer);
 
 #endif

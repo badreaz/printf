@@ -14,6 +14,7 @@ int _printf(const char *format, ...)
 	va_list list;
 	char *ans, string[1024];
 
+	init_buf(string);
 	va_start(list, format);
 	i = 0;
 	j = 0;
@@ -38,7 +39,7 @@ int _printf(const char *format, ...)
 	}
 	va_end(list);
 	/* print string */
-	for (i = 0; i < j; i++)
+	for (i = 0; string[i]; i++)
 	{
 		write(1, &string[i], 1);
 	}

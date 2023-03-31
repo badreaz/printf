@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
  * p_type - convert pointer to char * in hexadecimal.
  * @p: pointer.
@@ -8,29 +8,13 @@
  */
 char *p_type(va_list p)
 {
-	char *s, *ptr;
-	int i, j;
+	unsigned char *ptr;
 
-	ptr = va_arg(p, char *);
-	/* add code */
-	s = malloc(_strlen(ptr) + 3);
-	if (s == NULL)
-	{
-		free(s);
-		return (NULL);
-	}
-	s[0] = '0';
-        s[1] = 'x';
-	i = 2;
-	j = 0;
-	while (ptr[j])
-	{
-		s[i] = ptr[j];
-		i++;
-		j++;
-	}
-	s[i] = '\0';
-	return (s);
+	ptr = va_arg(p, unsigned char *);
+	/* add code 
+	s = malloc(_strlen((char *)ptr));
+	s = _strdup(ptr);*/
+	return ((char *)ptr);
 }
 
 /**
@@ -46,7 +30,7 @@ char *r_type(va_list r)
 
 
 	str = va_arg(r, char *);
-	s = malloc(sizeof(str));
+	s = malloc(sizeof(char) * _strlen(str) + 1);
 	if (s == NULL)
 	{
 		free(s);
@@ -75,25 +59,27 @@ char *r_type(va_list r)
  */
 char *R_type(va_list R)
 {
-	char *str;
+	char *str, *s;
 	int i, c;
 	char *rot_13 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char *out_13 = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 
 	str = va_arg(R, char *);
+	s = malloc(sizeof(char) * _strlen(str) + 1);
 	c = 0;
 	while (str[c] != '\0')
 	{
+		s[c] = str[c];
 		for (i = 0; i < 52; i++)
 		{
 			if (str[c] == rot_13[i])
 			{
-				str[c] = out_13[i];
+				s[c] = out_13[i];
 				break;
 			}
 		}
 		c++;
 	}
-	return (str);
+	return (s);
 }

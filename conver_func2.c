@@ -171,24 +171,27 @@ char *S_type(va_list S)
 	str = va_arg(S, char *);
 	for (i = 0; str[i]; i++)
 	{
-		if (str[i] < 32)
+		if ((0 < str[i] && str[i] < 32) || str[i] > 126)
 			i += 3;
 	}
 	s = malloc((i + 1) * sizeof(char));
 	if (s == NULL)
 	{
-		free(s);
 		return (NULL);
 	}
 	for (i = 0, j = 0; str[i]; i++, j++)
 	{
-		if (str[i] < 32)
+		if ((0 < str[i] && str[i] < 32) || str[i] > 126)
 		{
 			s[j] = '\\';
-			s[j++] = 'x';
+			j++;
+			s[j] = 'x';
 			hex = itohex(str[i]);
-			for (x = 0; x < 3; x++)
-				s[j++] = hex[x];
+			for (x = 0; x < 2; x++)
+			{
+				j++;
+				s[j] = hex[x];
+			}
 		}
 		else
 			s[j] = str[i];

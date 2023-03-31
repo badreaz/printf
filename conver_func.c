@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * c_type - convert char to char *.
@@ -35,6 +36,8 @@ char *s_type(va_list s)
 	char *string;
 
 	string = va_arg(s, char *);
+	if (string == NULL)
+		string = _strdup((unsigned char *)"(null)");
 	return (string);
 }
 
@@ -47,8 +50,13 @@ char *s_type(va_list s)
 char *m_type(va_list m)
 {
 	char *s;
+	char n;
 
-	s = va_arg(m, char *);
+	n = va_arg(m, int);
+	s = malloc(2);
+	s[0] = n;
+	s[0] = '%';
+	s[1] = '\0';
 	return (s);
 }
 
@@ -62,16 +70,11 @@ char *i_type(va_list i)
 {
 	char *s;
 	int num, c = 0, j, div = 1;
+	unsigned int k;
 
 	num = va_arg(i, int);
-	if (num < 0)
-	{
-		j = -num;
-		c++;
-	}
-	else
-		j = num;
 
+	j = num;
 	while (j / 10)
 	{
 		div *= 10;
@@ -80,21 +83,21 @@ char *i_type(va_list i)
 	}
 	s = malloc((c + 2) * sizeof(char));
 	if (s == NULL)
-	{
-		free(s);
 		return (NULL);
-	}
 	c = 0;
+	k = num;
 	if (num < 0)
 	{
 		s[c] = '-';
-		num *= -1;
 		c++;
 	}
-	while (div != 0)
+	while (div > 0)
 	{
-		j = num / div;
-		s[c] = (j % 10) + '0';
+		j = k / div;
+		if (j < 0)
+			s[c] = (j % 10) + 63;
+		else
+			s[c] = (j % 10) + '0';
 		c++;
 		div /= 10;
 	}
@@ -110,30 +113,25 @@ char *i_type(va_list i)
  */
 char *b_type(va_list b)
 {
-	unsigned int num, i = 0, j, div = 1;
+	unsigned int num, i = 0, j;
 	char *s;
 
 	num = va_arg(b, unsigned int);
 	j = num;
 	while (j / 2)
 	{
-		div *= 2;
 		j /= 2;
 		i++;
 	}
-	s = malloc((i + 1) * sizeof(char));
+	s = malloc((i++) * sizeof(char));
 	if (s == NULL)
-	{
-		free(s);
 		return (NULL);
-	}
-	i = 0;
-	while (div > 0)
-	{
-		s[i] = ((num / 2) % 2) + '0';
-		div /= 2;
-		i++;
-	}
 	s[i] = '\0';
+	while (i > 0)
+	{
+		i--;
+		s[i] = (num % 2) + '0';
+		num /= 2;
+	}
 	return (s);
 }
