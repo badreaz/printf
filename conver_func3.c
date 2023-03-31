@@ -11,6 +11,7 @@ char *p_type(va_list p)
 	unsigned char *ptr;
 
 	ptr = va_arg(p, unsigned char *);
+	ptr = NULL;
 	/* add code 
 	s = malloc(_strlen((char *)ptr));
 	s = _strdup(ptr);*/

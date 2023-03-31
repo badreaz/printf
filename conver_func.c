@@ -37,7 +37,7 @@ char *s_type(va_list s)
 
 	string = va_arg(s, char *);
 	if (string == NULL)
-		string = _strdup((unsigned char *)"(null)");
+		string = _strdup("(null)");
 	return (string);
 }
 
