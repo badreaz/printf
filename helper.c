@@ -28,7 +28,7 @@ char *itohex(int n)
 		if (n / div < 10)
 			s[i] = ((n / div) % 16) + '0';
 		else
-			s[i] = ((n / div) % 16) + 87;
+			s[i] = ((n / div) % 16) + 55;
 		div /= 16;
 		i++;
 	}
