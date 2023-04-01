@@ -70,7 +70,6 @@ char *i_type(va_list i)
 {
 	char *s;
 	int num, c = 0, j, div = 1;
-	unsigned int k;
 
 	num = va_arg(i, int);
 
@@ -85,19 +84,16 @@ char *i_type(va_list i)
 	if (s == NULL)
 		return (NULL);
 	c = 0;
-	k = num;
 	if (num < 0)
 	{
 		s[c] = '-';
+		num *= -1;
 		c++;
 	}
 	while (div > 0)
 	{
-		j = k / div;
-		if (j < 0)
-			s[c] = (j % 10) + 63;
-		else
-			s[c] = (j % 10) + '0';
+		j = num / div;
+		s[c] = (j % 10) + '0';
 		c++;
 		div /= 10;
 	}
