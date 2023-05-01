@@ -58,5 +58,7 @@ int alloc_mem(char *buffer, char *ans, int index, int count);
 void init_buf(char *buffer);
 char get_flag(char c);
 char *add_flag(char *num, arg_t arg);
+char get_width(char c);
+char *add_width(char *str, arg_t arg);
 
 #endif
