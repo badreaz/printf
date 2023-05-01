@@ -16,6 +16,23 @@ typedef struct type
 	char specifier;
 	char *(*f)(va_list);
 } type_t;
+/**
+ * struct arg - struct arg
+ *
+ * @flag: flags
+ * @width: field width
+ * @precision: precision
+ * @length: int length
+ * @type: conversion specifier
+ */
+typedef struct arg
+{
+	char flag;
+	char width;
+	char precision;
+	char length;
+	char type;
+} arg_t;
 int _printf(const char *format, ...);
 char *(*find_type(char s))(va_list);
 char *c_type(va_list c);
